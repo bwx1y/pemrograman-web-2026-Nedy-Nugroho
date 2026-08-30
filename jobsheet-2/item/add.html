@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goods Office</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<div class="container">
+    <aside class="sidebar">
+        <h2>Goods Office</h2>
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="./index.html">List of Items</a></li>
+            <li><a href="./user">Daftar Anggota</a></li>
+        </ul>
+    </aside>
+
+    <main class="content">
+        <h1>Add Barang</h1>
+        <br/>
+        <!-- Kontainer Form -->
+        <div class="form-container">
+            <h2>Tambah Data Barang</h2>
+            <form action="#" method="POST">
+
+                <div class="form-group">
+                    <label for="kode">Kode Barang</label>
+                    <input type="text" id="kode" name="kode" placeholder="Misal: ELK-003" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="nama">Nama Barang</label>
+                    <input type="text" id="nama" name="nama" placeholder="Masukkan nama barang" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="kategori">Kategori</label>
+                    <select id="kategori" name="kategori" required>
+                        <option value="" disabled selected>-- Pilih Kategori --</option>
+                        <option value="Komponen Elektronik">Komponen Elektronik</option>
+                        <option value="Perangkat IT">Perangkat IT</option>
+                        <option value="Alat Tulis Kantor">Alat Tulis Kantor</option>
+                        <option value="Perabotan">Perabotan</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="jumlah">Jumlah Barang (Count)</label>
+                    <input type="number" id="jumlah" name="jumlah" min="0" placeholder="0" required>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-save">Simpan Data</button>
+                    <a href="./index.html" class="btn-cancel">Batal</a>
+                </div>
+
+            </form>
+        </div>
+    </main>
+</div>
+
+</body>
+</html>
