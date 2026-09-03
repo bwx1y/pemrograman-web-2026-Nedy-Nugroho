@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goods Office</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<div class="container">
+    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <label for="nav-toggle" class="nav-toggle-label">
+        <span></span>
+    </label>
+    <aside class="sidebar">
+        <h2>Goods Office</h2>
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="#">List of Items</a></li>
+            <li><a href="../user">Daftar Anggota</a></li>
+        </ul>
+    </aside>
+
+    <main class="content">
+        <!-- Wrapper untuk Judul dan Tombol Tambah -->
+        <div class="content-header">
+            <h1>List Barang</h1>
+            <a href="./add.html" class="btn-add">+ Tambah Barang</a>
+        </div>
+
+        <div class="table-responsive">
+            <table class="data-table">
+                <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Count</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>ELK-001</td>
+                    <td>Digital Voltmeter</td>
+                    <td>Komponen Elektronik</td>
+                    <td>20</td>
+                    <td>
+                        <button type="button" class="btn-edit">Edit</button>
+                        <button type="button" class="btn-delete">Hapus</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>ELK-002</td>
+                    <td>Segment Display Module</td>
+                    <td>Komponen Elektronik</td>
+                    <td>50</td>
+                    <td>
+                        <button type="button" class="btn-edit">Edit</button>
+                        <button type="button" class="btn-delete">Hapus</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>IT-015</td>
+                    <td>Laptop ASUS Vivobook</td>
+                    <td>Perangkat IT</td>
+                    <td>12</td>
+                    <td>
+                        <button type="button" class="btn-edit">Edit</button>
+                        <button type="button" class="btn-delete">Hapus</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>ATK-022</td>
+                    <td>Kertas HVS A4 80gr</td>
+                    <td>Alat Tulis Kantor</td>
+                    <td>150</td>
+                    <td>
+                        <button type="button" class="btn-edit">Edit</button>
+                        <button type="button" class="btn-delete">Hapus</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>PRB-008</td>
+                    <td>Kursi Kantor Ergonomis</td>
+                    <td>Perabotan</td>
+                    <td>25</td>
+                    <td>
+                        <button type="button" class="btn-edit">Edit</button>
+                        <button type="button" class="btn-delete">Hapus</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</div>
+
+</body>
+</html>
