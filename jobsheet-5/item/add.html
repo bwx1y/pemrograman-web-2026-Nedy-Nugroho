@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goods Office</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<div class="d-flex">
+    <!-- Sidebar -->
+    <nav class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 250px; min-height: 100vh;">
+        <h2 class="fs-4 text-center mb-4">Goods Office</h2>
+        <ul class="nav nav-pills flex-column mb-auto">
+            <li class="nav-item"><a href="../index.html" class="nav-link text-white">Home</a></li>
+            <li class="nav-item"><a href="./index.html" class="nav-link active">List of Items</a></li>
+            <li class="nav-item"><a href="../user" class="nav-link text-white">Daftar Anggota</a></li>
+        </ul>
+    </nav>
+
+    <!-- Content -->
+    <main class="flex-grow-1 p-4">
+        <h1 class="mb-4">Add Barang</h1>
+
+        <div class="card">
+            <div class="card-header">
+                <h2 class="h5 mb-0">Tambah Data Barang</h2>
+            </div>
+            <div class="card-body">
+                <form id="form-tambah" action="#" method="POST">
+                    <div class="mb-3">
+                        <label for="kode" class="form-label">Kode Barang</label>
+                        <input type="text" class="form-control" id="kode" name="kode" placeholder="Misal: ELK-003" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="nama" class="form-label">Nama Barang</label>
+                        <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan nama barang" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="kategori" class="form-label">Kategori</label>
+                        <select class="form-select" id="kategori" name="kategori" required>
+                            <option value="" disabled selected>-- Pilih Kategori --</option>
+                            <option value="Komponen Elektronik">Komponen Elektronik</option>
+                            <option value="Perangkat IT">Perangkat IT</option>
+                            <option value="Alat Tulis Kantor">Alat Tulis Kantor</option>
+                            <option value="Perabotan">Perabotan</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="jumlah" class="form-label">Jumlah Barang (Count)</label>
+                        <input type="number" class="form-control" id="jumlah" name="jumlah" min="0" placeholder="0" required>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-primary">Simpan Data</button>
+                        <a href="./index.html" class="btn btn-secondary">Batal</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
+<script src="../assets/js/app.js"></script>
+</body>
+</html>
