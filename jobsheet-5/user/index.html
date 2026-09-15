@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goods Office</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<div class="d-flex">
+    <!-- Sidebar -->
+    <nav class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 250px; min-height: 100vh;">
+        <h2 class="fs-4 text-center mb-4">Goods Office</h2>
+        <ul class="nav nav-pills flex-column mb-auto">
+            <li class="nav-item"><a href="../index.html" class="nav-link text-white">Home</a></li>
+            <li class="nav-item"><a href="../item" class="nav-link text-white">List of Items</a></li>
+            <li class="nav-item"><a href="#" class="nav-link active">Daftar Anggota</a></li>
+        </ul>
+    </nav>
+
+    <!-- Content -->
+    <main class="flex-grow-1 p-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1>Daftar Anggota</h1>
+            <a href="./add.html" class="btn btn-primary">+ Tambah Anggota</a>
+        </div>
+
+        <div class="search-box">
+            <label for="search-input">Cari Anggota</label>
+            <input type="text" id="search-input" placeholder="Ketik nama anggota...">
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+                <thead class="table-dark">
+                <tr>
+                    <th>Username</th>
+                    <th>Full Name</th>
+                    <th>Password</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>john_doe</td>
+                    <td>John Doe</td>
+                    <td>********</td>
+                    <td>
+                        <button type="button" class="btn btn-warning btn-sm">Edit</button>
+                        <button type="button" class="btn btn-danger btn-sm btn-hapus">Hapus</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>jane_smith</td>
+                    <td>Jane Smith</td>
+                    <td>********</td>
+                    <td>
+                        <button type="button" class="btn btn-warning btn-sm">Edit</button>
+                        <button type="button" class="btn btn-danger btn-sm btn-hapus">Hapus</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>budi_santoso</td>
+                    <td>Budi Santoso</td>
+                    <td>********</td>
+                    <td>
+                        <button type="button" class="btn btn-warning btn-sm">Edit</button>
+                        <button type="button" class="btn btn-danger btn-sm btn-hapus">Hapus</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>siti_rahayu</td>
+                    <td>Siti Rahayu</td>
+                    <td>********</td>
+                    <td>
+                        <button type="button" class="btn btn-warning btn-sm">Edit</button>
+                        <button type="button" class="btn btn-danger btn-sm btn-hapus">Hapus</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>ahmad_fauzi</td>
+                    <td>Ahmad Fauzi</td>
+                    <td>********</td>
+                    <td>
+                        <button type="button" class="btn btn-warning btn-sm">Edit</button>
+                        <button type="button" class="btn btn-danger btn-sm btn-hapus">Hapus</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
+<script src="../assets/js/app.js"></script>
+</body>
+</html>
