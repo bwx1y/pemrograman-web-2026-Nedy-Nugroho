@@ -328,6 +328,15 @@ body {
     margin-top: 10px;
 }
 
+/* --- Footer --- */
+.footer {
+    color: #2c3e50;
+    text-align: center;
+    padding: 15px 20px;
+    font-size: 14px;
+    width: 100%;
+}
+
 /* --- Media Queries --- */
 
 /* Tablet: max-width 900px (ubah dari 768px sesuai exercise 6.4) */
