@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goods Office</title>
+    <link rel="stylesheet" href="/jobsheet-4/assets/css/style.css">
+</head>
+<body>
+
+<div class="container">
+    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <label for="nav-toggle" class="nav-toggle-label">
+        <span></span>
+    </label>
+    <aside class="sidebar">
+        <h2>Goods Office</h2>
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../item">List of Items</a></li>
+            <li><a href="../category">Categories</a></li>
+            <li><a href="./index.html">Members</a></li>
+        </ul>
+    </aside>
+
+    <main class="content">
+        <h1>Add Member</h1>
+        <br/>
+        <!-- Form Container -->
+        <div class="form-container">
+            <h2>Add Member Data</h2>
+            <form action="#" method="POST">
+
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Masukkan username" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="fullname">Full Name</label>
+                    <input type="text" id="fullname" name="fullname" placeholder="Enter full name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="tanggal_lahir">Tanggal Lahir</label>
+                    <input type="date" id="tanggal_lahir" name="tanggal_lahir" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="nomor_hp">Nomor HP</label>
+                    <input type="tel" id="nomor_hp" name="nomor_hp" placeholder="Masukkan nomor HP" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Masukkan password" required>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-save">Save Data</button>
+                    <a href="./index.html" class="btn-cancel">Cancel</a>
+                </div>
+
+            </form>
+        </div>
+        <footer class="footer">
+            <p>&copy; 2026 Goods Office &mdash; Jobsheet 3</p>
+        </footer>
+    </main>
+</div>
+
+</body>
+</html>
