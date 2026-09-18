@@ -96,8 +96,23 @@ function initValidasiForm() {
     });
 }
 
+// ===== Konfirmasi hapus (front-end only, belum ke server) =====
+function initHapusConfirm() {
+    document.querySelectorAll(".btn-hapus, .btn-delete").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+            const row = btn.closest("tr");
+            const nama = row ? row.querySelector("td")?.textContent : "data ini";
+            const yakin = confirm("Yakin ingin menghapus \"" + nama + "\"?");
+            if (yakin && row) {
+                row.remove();
+            }
+        });
+    });
+}
+
 document.addEventListener("DOMContentLoaded", function () {
     initNavToggle();
+    initHapusConfirm();
     initTableFilter();
     initValidasiForm();
 });
