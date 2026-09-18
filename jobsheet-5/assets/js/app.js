@@ -12,12 +12,14 @@ function initNavToggle() {
 // ===== Filter/pencarian tabel real-time =====
 function initTableFilter() {
     const input = document.getElementById("search-input");
+    const categorySelect = document.getElementById("category-filter");
     const statusSelect = document.getElementById("status-filter");
     const table = document.querySelector(".table-responsive table") || document.querySelector("table");
     if (!table) return;
 
     function applyFilter() {
         const keyword = input ? input.value.toLowerCase() : "";
+        const selectedCategory = categorySelect ? categorySelect.value.toLowerCase() : "";
         const selectedStatus = statusSelect ? statusSelect.value.toLowerCase() : "";
         const rows = table.querySelectorAll("tbody tr");
 
@@ -25,18 +27,27 @@ function initTableFilter() {
             const teks = row.textContent.toLowerCase();
             const matchKeyword = !keyword || teks.includes(keyword);
 
+            let matchCategory = true;
+            if (selectedCategory) {
+                const categoryCell = row.children[2] ? row.children[2].textContent.trim().toLowerCase() : "";
+                matchCategory = categoryCell === selectedCategory;
+            }
+
             let matchStatus = true;
             if (selectedStatus) {
                 const statusCell = row.children[5] ? row.children[5].textContent.trim().toLowerCase() : "";
                 matchStatus = statusCell === selectedStatus;
             }
 
-            row.style.display = (matchKeyword && matchStatus) ? "" : "none";
+            row.style.display = (matchKeyword && matchCategory && matchStatus) ? "" : "none";
         });
     }
 
     if (input) {
         input.addEventListener("keyup", applyFilter);
+    }
+    if (categorySelect) {
+        categorySelect.addEventListener("change", applyFilter);
     }
     if (statusSelect) {
         statusSelect.addEventListener("change", applyFilter);
