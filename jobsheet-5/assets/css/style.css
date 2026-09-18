@@ -279,6 +279,18 @@ body {
 }
 
 /* --- Navbar --- */
+.search-box {
+    margin-bottom: 1rem;
+}
+
+.search-box input {
+    width: 100%;
+    max-width: 320px;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #cdd4da;
+    border-radius: 4px;
+}
+
 .error {
     display: block;
     color: #d9534f;
