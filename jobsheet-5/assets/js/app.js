@@ -12,17 +12,35 @@ function initNavToggle() {
 // ===== Filter/pencarian tabel real-time =====
 function initTableFilter() {
     const input = document.getElementById("search-input");
+    const statusSelect = document.getElementById("status-filter");
     const table = document.querySelector(".table-responsive table") || document.querySelector("table");
-    if (!input || !table) return;
+    if (!table) return;
 
-    input.addEventListener("keyup", function () {
-        const keyword = input.value.toLowerCase();
+    function applyFilter() {
+        const keyword = input ? input.value.toLowerCase() : "";
+        const selectedStatus = statusSelect ? statusSelect.value.toLowerCase() : "";
         const rows = table.querySelectorAll("tbody tr");
+
         rows.forEach(function (row) {
             const teks = row.textContent.toLowerCase();
-            row.style.display = teks.includes(keyword) ? "" : "none";
+            const matchKeyword = !keyword || teks.includes(keyword);
+
+            let matchStatus = true;
+            if (selectedStatus) {
+                const statusCell = row.children[5] ? row.children[5].textContent.trim().toLowerCase() : "";
+                matchStatus = statusCell === selectedStatus;
+            }
+
+            row.style.display = (matchKeyword && matchStatus) ? "" : "none";
         });
-    });
+    }
+
+    if (input) {
+        input.addEventListener("keyup", applyFilter);
+    }
+    if (statusSelect) {
+        statusSelect.addEventListener("change", applyFilter);
+    }
 }
 
 // ===== Validasi form (client-side) =====
