@@ -14,6 +14,7 @@ function initTableFilter() {
     const input = document.getElementById("search-input");
     const categorySelect = document.getElementById("category-filter");
     const statusSelect = document.getElementById("status-filter");
+    const roleSelect = document.getElementById("role-filter");
     const table = document.querySelector(".table-responsive table") || document.querySelector("table");
     if (!table) return;
 
@@ -21,6 +22,7 @@ function initTableFilter() {
         const keyword = input ? input.value.toLowerCase() : "";
         const selectedCategory = categorySelect ? categorySelect.value.toLowerCase() : "";
         const selectedStatus = statusSelect ? statusSelect.value.toLowerCase() : "";
+        const selectedRole = roleSelect ? roleSelect.value.toLowerCase() : "";
         const rows = table.querySelectorAll("tbody tr");
 
         rows.forEach(function (row) {
@@ -39,19 +41,20 @@ function initTableFilter() {
                 matchStatus = statusCell === selectedStatus;
             }
 
-            row.style.display = (matchKeyword && matchCategory && matchStatus) ? "" : "none";
+            let matchRole = true;
+            if (selectedRole) {
+                const roleCell = row.children[2] ? row.children[2].textContent.trim().toLowerCase() : "";
+                matchRole = roleCell === selectedRole;
+            }
+
+            row.style.display = (matchKeyword && matchCategory && matchStatus && matchRole) ? "" : "none";
         });
     }
 
-    if (input) {
-        input.addEventListener("keyup", applyFilter);
-    }
-    if (categorySelect) {
-        categorySelect.addEventListener("change", applyFilter);
-    }
-    if (statusSelect) {
-        statusSelect.addEventListener("change", applyFilter);
-    }
+    if (input) input.addEventListener("keyup", applyFilter);
+    if (categorySelect) categorySelect.addEventListener("change", applyFilter);
+    if (statusSelect) statusSelect.addEventListener("change", applyFilter);
+    if (roleSelect) roleSelect.addEventListener("change", applyFilter);
 }
 
 // ===== Validasi form (client-side) =====
