@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "name": "Electronic Components",
+        "description": "Electronic components and modules"
+    },
+    {
+        "id": 2,
+        "name": "IT Devices",
+        "description": "Laptops, PCs, and technology devices"
+    },
+    {
+        "id": 3,
+        "name": "Office Supplies",
+        "description": "Paper, pens, and office equipment"
+    },
+    {
+        "id": 4,
+        "name": "Furniture",
+        "description": "Desks, chairs, and office furniture"
+    }
+]

@@ -32,6 +32,8 @@
             <input type="text" id="search-input" placeholder="Ketik kata kunci...">
         </div>
 
+        <p id="loading-indicator" style="display:none;">Memuat data...</p>
+
         <div class="table-responsive">
             <table class="data-table">
                 <thead>
@@ -43,42 +45,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Electronic Components</td>
-                    <td>Electronic components and modules</td>
-                    <td>
-                        <button type="button" class="btn-edit">Edit</button>
-                        <button type="button" class="btn-delete btn-hapus">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>IT Devices</td>
-                    <td>Laptops, PCs, and technology devices</td>
-                    <td>
-                        <button type="button" class="btn-edit">Edit</button>
-                        <button type="button" class="btn-delete btn-hapus">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Office Supplies</td>
-                    <td>Paper, pens, and office equipment</td>
-                    <td>
-                        <button type="button" class="btn-edit">Edit</button>
-                        <button type="button" class="btn-delete btn-hapus">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Furniture</td>
-                    <td>Desks, chairs, and office furniture</td>
-                    <td>
-                        <button type="button" class="btn-edit">Edit</button>
-                        <button type="button" class="btn-delete btn-hapus">Delete</button>
-                    </td>
-                </tr>
+                <!-- Baris diisi dinamis oleh assets/js/category.js via fetch('../data/category.json') -->
                 </tbody>
             </table>
         </div>
@@ -89,5 +56,6 @@
 </div>
 
 <script src="../assets/js/app.js"></script>
+<script src="../assets/js/category.js"></script>
 </body>
 </html>

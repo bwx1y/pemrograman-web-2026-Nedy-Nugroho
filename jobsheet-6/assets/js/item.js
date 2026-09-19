@@ -40,13 +40,13 @@ async function muatDaftarItem() {
     }
 }
 
-// Mengambil & menampilkan opsi Kategori secara asinkron dari data/kategori.json
+// Mengambil & menampilkan opsi Kategori secara asinkron dari data/category.json
 async function muatKategoriOption() {
     const selectKategori = document.getElementById("kategori");
     if (!selectKategori) return;
 
     try {
-        const res = await fetch("../data/kategori.json");
+        const res = await fetch("../data/category.json");
         if (!res.ok) {
             throw new Error("Gagal mengambil data kategori (status " + res.status + ")");
         }
@@ -56,8 +56,8 @@ async function muatKategoriOption() {
 
         daftarKategori.forEach(function (kat) {
             const option = document.createElement("option");
-            option.value = kat.nama;
-            option.textContent = kat.nama;
+            option.value = kat.name;
+            option.textContent = kat.name;
             selectKategori.appendChild(option);
         });
     } catch (err) {
