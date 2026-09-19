@@ -96,10 +96,12 @@ function initValidasiForm() {
     });
 }
 
-// ===== Konfirmasi hapus (front-end only, memakai event delegation) =====
+// Memakai event delegation di document karena baris tabel sekarang
+// dirender dinamis via fetch (lihat buku.js/anggota.js) sehingga
+// tombol .btn-hapus belum tentu ada saat DOMContentLoaded.
 function initHapusConfirm() {
     document.addEventListener("click", function (e) {
-        const btn = e.target.closest(".btn-hapus, .btn-delete");
+        const btn = e.target.closest(".btn-hapus");
         if (!btn) return;
 
         const row = btn.closest("tr");
