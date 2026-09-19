@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goods Office</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<div class="container">
+    <button type="button" id="nav-toggle-btn" class="nav-toggle-label" aria-label="Menu">&#9776;</button>
+    <aside class="sidebar">
+        <h2>Goods Office</h2>
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="#">List of Items</a></li>
+            <li><a href="../category">Categories</a></li>
+            <li><a href="../user">Members</a></li>
+        </ul>
+    </aside>
+
+    <main class="content">
+        <!-- Wrapper for Title and Add Button -->
+        <div class="content-header">
+            <h1>List of Items</h1>
+            <a href="/item/add.html" class="btn-add">+ Add Item</a>
+        </div>
+
+        <div class="search-box">
+            <label for="search-input">Cari Items</label>
+            <input type="text" id="search-input" placeholder="Ketik kata kunci...">
+
+            <label for="category-filter">Filter Kategori</label>
+            <select id="category-filter">
+                <option value="">Semua Kategori</option>
+                <option value="Electronic Components">Electronic Components</option>
+                <option value="IT Devices">IT Devices</option>
+                <option value="Office Supplies">Office Supplies</option>
+                <option value="Furniture">Furniture</option>
+            </select>
+
+            <label for="status-filter">Filter Status</label>
+            <select id="status-filter">
+                <option value="">Semua Status</option>
+                <option value="Good">Good</option>
+                <option value="Damaged">Damaged</option>
+            </select>
+        </div>
+
+        <p id="loading-indicator" style="display:none;">Memuat data...</p>
+
+        <div class="table-responsive">
+            <table class="data-table">
+                <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Count</th>
+                    <th>Purchase Price</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- Baris diisi dinamis oleh assets/js/item.js via fetch('../data/item.json') -->
+                </tbody>
+            </table>
+        </div>
+        <footer class="footer">
+            <p>&copy; 2026 Goods Office &mdash; Jobsheet 3</p>
+        </footer>
+    </main>
+</div>
+
+<script src="../assets/js/app.js"></script>
+<script src="../assets/js/item.js"></script>
+</body>
+</html>

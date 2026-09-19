@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goods Office</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<div class="container">
+    <button type="button" id="nav-toggle-btn" class="nav-toggle-label" aria-label="Menu">&#9776;</button>
+    <aside class="sidebar">
+        <h2>Goods Office</h2>
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../item">List of Items</a></li>
+            <li><a href="./index.html">Categories</a></li>
+            <li><a href="../user">Daftar Anggota</a></li>
+        </ul>
+    </aside>
+
+    <main class="content">
+        <h1>Add Category</h1>
+        <br/>
+        <!-- Kontainer Form -->
+        <div class="form-container">
+            <h2>Add Category Data</h2>
+            <form id="form-tambah" action="#" method="POST">
+
+                <div class="form-group">
+                    <label for="nama_kategori">Category Name</label>
+                    <input type="text" id="nama_kategori" name="nama_kategori" placeholder="Enter category name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="keterangan">Description</label>
+                    <input type="text" id="keterangan" name="keterangan" placeholder="Enter category description" required>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-save">Save Data</button>
+                    <a href="./index.html" class="btn-cancel">Cancel</a>
+                </div>
+
+            </form>
+        </div>
+        <footer class="footer">
+            <p>&copy; 2026 Goods Office &mdash; Jobsheet 3</p>
+        </footer>
+    </main>
+</div>
+
+<script src="../assets/js/app.js"></script>
+</body>
+</html>
