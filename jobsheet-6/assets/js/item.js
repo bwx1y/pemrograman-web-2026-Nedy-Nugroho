@@ -40,4 +40,32 @@ async function muatDaftarItem() {
     }
 }
 
-document.addEventListener("DOMContentLoaded", muatDaftarItem);
+// Mengambil & menampilkan opsi Kategori secara asinkron dari data/kategori.json
+async function muatKategoriOption() {
+    const selectKategori = document.getElementById("kategori");
+    if (!selectKategori) return;
+
+    try {
+        const res = await fetch("../data/kategori.json");
+        if (!res.ok) {
+            throw new Error("Gagal mengambil data kategori (status " + res.status + ")");
+        }
+        const daftarKategori = await res.json();
+
+        selectKategori.innerHTML = '<option value="" disabled selected>-- Select Category --</option>';
+
+        daftarKategori.forEach(function (kat) {
+            const option = document.createElement("option");
+            option.value = kat.nama;
+            option.textContent = kat.nama;
+            selectKategori.appendChild(option);
+        });
+    } catch (err) {
+        console.error(err.message);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    muatDaftarItem();
+    muatKategoriOption();
+});
