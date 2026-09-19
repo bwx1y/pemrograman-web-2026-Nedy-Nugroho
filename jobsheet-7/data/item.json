@@ -1,0 +1,42 @@
+[
+    {
+        "code": "ELK-001",
+        "name": "Digital Voltmeter",
+        "category": "Electronic Components",
+        "count": 20,
+        "price": "Rp 250.000",
+        "status": "Good"
+    },
+    {
+        "code": "ELK-002",
+        "name": "Segment Display Module",
+        "category": "Electronic Components",
+        "count": 50,
+        "price": "Rp 35.000",
+        "status": "Good"
+    },
+    {
+        "code": "IT-015",
+        "name": "Laptop ASUS Vivobook",
+        "category": "IT Devices",
+        "count": 12,
+        "price": "Rp 8.500.000",
+        "status": "Good"
+    },
+    {
+        "code": "ATK-022",
+        "name": "HVS A4 80gr Paper",
+        "category": "Office Supplies",
+        "count": 150,
+        "price": "Rp 55.000",
+        "status": "Good"
+    },
+    {
+        "code": "PRB-008",
+        "name": "Ergonomic Office Chair",
+        "category": "Furniture",
+        "count": 25,
+        "price": "Rp 1.200.000",
+        "status": "Damaged"
+    }
+]

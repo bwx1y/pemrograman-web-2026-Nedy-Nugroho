@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goods Office</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<div class="container">
+    <button type="button" id="nav-toggle-btn" class="nav-toggle-label" aria-label="Menu">&#9776;</button>
+    <aside class="sidebar">
+        <h2>Goods Office</h2>
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="./index.html">List of Items</a></li>
+            <li><a href="../category/index.html">Categories</a></li>
+            <li><a href="../user/index.html">Members</a></li>
+        </ul>
+    </aside>
+
+    <main class="content">
+        <h1>Add Item</h1>
+        <br/>
+        <!-- Form Container -->
+        <div class="form-container">
+            <h2>Add Item Data</h2>
+            <form id="form-tambah" action="#" method="POST">
+
+                <div class="form-group">
+                    <label for="kode">Item Code</label>
+                    <input type="text" id="kode" name="kode" placeholder="e.g. ELK-003" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="nama">Item Name</label>
+                    <input type="text" id="nama" name="nama" placeholder="Enter item name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="kategori">Kategori</label>
+                    <select id="kategori" name="kategori" required>
+                        <option value="" disabled selected>-- Select Category --</option>
+                        <option value="Electronic Components">Electronic Components</option>
+                        <option value="IT Devices">IT Devices</option>
+                        <option value="Office Supplies">Office Supplies</option>
+                        <option value="Furniture">Furniture</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="jumlah">Item Quantity (Count)</label>
+                    <input type="number" id="jumlah" name="jumlah" min="0" placeholder="0" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="harga">Purchase Price</label>
+                    <input type="text" id="harga" name="harga" placeholder="Rp 0" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="status">Status</label>
+                    <select id="status" name="status" required>
+                        <option value="" disabled selected>-- Select Status --</option>
+                        <option value="Good">Good</option>
+                        <option value="Damaged">Damaged</option>
+                    </select>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-save">Save Data</button>
+                    <a href="./index.html" class="btn-cancel">Cancel</a>
+                </div>
+
+            </form>
+        </div>
+        <footer class="footer">
+            <p>&copy; 2026 Goods Office &mdash; Jobsheet 3</p>
+        </footer>
+    </main>
+</div>
+
+<script src="../assets/js/app.js"></script>
+<script src="../assets/js/item.js"></script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goods Office</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<div class="container">
+    <button type="button" id="nav-toggle-btn" class="nav-toggle-label" aria-label="Menu">&#9776;</button>
+    <aside class="sidebar">
+        <h2>Goods Office</h2>
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../item/index.html">List of Items</a></li>
+            <li><a href="../category/index.html">Categories</a></li>
+            <li><a href="#">Members</a></li>
+        </ul>
+    </aside>
+
+    <main class="content">
+        <!-- Wrapper untuk Judul dan Tombol Tambah -->
+        <div class="content-header">
+            <h1>List of Members</h1>
+            <a href="add.html" class="btn-add">+ Add Member</a>
+        </div>
+
+        <div class="search-box">
+            <label for="search-input">Cari Member</label>
+            <input type="text" id="search-input" placeholder="Ketik kata kunci...">
+
+            <label for="role-filter">Filter Role</label>
+            <select id="role-filter">
+                <option value="">Semua Role</option>
+                <option value="Admin">Admin</option>
+                <option value="Staff">Staff</option>
+                <option value="Member">Member</option>
+            </select>
+        </div>
+
+        <p id="loading-indicator" style="display:none;">Memuat data...</p>
+
+        <div class="table-responsive">
+            <table class="data-table">
+                <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Full Name</th>
+                    <th>Role</th>
+                    <th>Tanggal Lahir</th>
+                    <th>Umur</th>
+                    <th>Nomor HP</th>
+                    <th>Password</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- Baris diisi dinamis oleh assets/js/user.js via fetch('../data/user.json') -->
+                </tbody>
+            </table>
+        </div>
+        <footer class="footer">
+            <p>&copy; 2026 Goods Office &mdash; Jobsheet 3</p>
+        </footer>
+    </main>
+</div>
+
+<script src="../assets/js/app.js"></script>
+<script src="../assets/js/user.js"></script>
+</body>
+</html>
