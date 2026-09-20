@@ -1,19 +1,12 @@
 <?php
 $page_title = "List of Items";
+require __DIR__ . '/../includes/koneksi.php';
 include __DIR__ . '/../includes/header.php';
-
-if (!isset($_SESSION['item'])) {
-    $dataFile = __DIR__ . '/../data/item.json';
-    if (file_exists($dataFile)) {
-        $_SESSION['item'] = json_decode(file_get_contents($dataFile), true) ?? [];
-    } else {
-        $_SESSION['item'] = [];
-    }
-}
 
 $flash = $_SESSION['flash'] ?? null;
 unset($_SESSION['flash']);
-$daftarItem = $_SESSION['item'] ?? [];
+
+$daftarItem = $pdo->query("SELECT * FROM item ORDER BY id DESC")->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <div class="content-header">
