@@ -2,7 +2,7 @@
 $host = "localhost";
 $port = "5432";
 $db   = "pemerogaman_web_db";
-$user = "root";
+$user = "postgres";
 $pass = "nedy_888";
 
 try {

@@ -1,22 +1,19 @@
 <?php
+global $pdo;
 $page_title = "Inventory Dashboard";
+require __DIR__ . '/includes/koneksi.php';
 include __DIR__ . '/includes/header.php';
 
-$items = $_SESSION['item'] ?? [];
-$users = $_SESSION['user'] ?? [];
-
-$totalItems = count($items);
-$totalMembers = count($users);
+$totalItems = (int) $pdo->query("SELECT COUNT(*) FROM item")->fetchColumn();
+$totalMembers = (int) $pdo->query('SELECT COUNT(*) FROM "user"')->fetchColumn();
+$damagedCount = (int) $pdo->query("SELECT COUNT(*) FROM item WHERE status = 'Damaged'")->fetchColumn();
 
 $totalAssetValue = 0;
-$damagedCount = 0;
-foreach ($items as $item) {
-    $price = (int) preg_replace('/[^0-9]/', '', $item['harga'] ?? '0');
-    $qty = (int) ($item['jumlah'] ?? 0);
+$stmt = $pdo->query("SELECT price, count FROM item");
+while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    $price = (int) preg_replace('/[^0-9]/', '', $row['price'] ?? '0');
+    $qty = (int) ($row['count'] ?? 0);
     $totalAssetValue += ($price * $qty);
-    if (($item['status'] ?? '') === 'Damaged') {
-        $damagedCount++;
-    }
 }
 ?>
 
