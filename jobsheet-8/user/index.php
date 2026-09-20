@@ -1,19 +1,13 @@
 <?php
+global $pdo;
 $page_title = "List of Members";
+require __DIR__ . '/../includes/koneksi.php';
 include __DIR__ . '/../includes/header.php';
-
-if (!isset($_SESSION['user'])) {
-    $dataFile = __DIR__ . '/../data/user.json';
-    if (file_exists($dataFile)) {
-        $_SESSION['user'] = json_decode(file_get_contents($dataFile), true) ?? [];
-    } else {
-        $_SESSION['user'] = [];
-    }
-}
 
 $flash = $_SESSION['flash'] ?? null;
 unset($_SESSION['flash']);
-$daftarUser = $_SESSION['user'] ?? [];
+
+$daftarUser = $pdo->query('SELECT * FROM "user" ORDER BY id DESC')->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <div class="content-header">
@@ -48,7 +42,6 @@ $daftarUser = $_SESSION['user'] ?? [];
             <th>Tanggal Lahir</th>
             <th>Umur</th>
             <th>Nomor HP</th>
-            <th>Password</th>
             <th>Action</th>
         </tr>
         </thead>
@@ -66,7 +59,6 @@ $daftarUser = $_SESSION['user'] ?? [];
                 <td><?php echo htmlspecialchars($u['birth_date'] ?? $u['tanggal_lahir'] ?? '-'); ?></td>
                 <td><?php echo htmlspecialchars($u['age'] ?? $u['umur'] ?? '-'); ?></td>
                 <td><?php echo htmlspecialchars($u['phone'] ?? $u['hp'] ?? '-'); ?></td>
-                <td><?php echo htmlspecialchars($u['password'] ?? '********'); ?></td>
                 <td>
                     <button type="button" class="btn-edit">Edit</button>
                     <button type="button" class="btn-delete">Hapus</button>

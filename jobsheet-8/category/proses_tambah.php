@@ -1,5 +1,6 @@
 <?php
 session_start();
+require __DIR__ . '/../includes/koneksi.php';
 
 $nama_kategori = trim($_POST['nama_kategori'] ?? '');
 $keterangan = trim($_POST['keterangan'] ?? '');
@@ -18,23 +19,16 @@ if (!empty($errors)) {
     exit;
 }
 
-if (!isset($_SESSION['category'])) {
-    $dataFile = __DIR__ . '/../data/category.json';
-    if (file_exists($dataFile)) {
-        $_SESSION['category'] = json_decode(file_get_contents($dataFile), true) ?? [];
-    } else {
-        $_SESSION['category'] = [];
-    }
+try {
+    $stmt = $pdo->prepare("INSERT INTO category (name, description) VALUES (:name, :description) RETURNING id");
+    $stmt->execute([
+        'name' => $nama_kategori,
+        'description' => $keterangan,
+    ]);
+    $_SESSION['flash'] = ['type' => 'success', 'pesan' => 'Data kategori berhasil ditambahkan.'];
+} catch (PDOException $e) {
+    $_SESSION['flash'] = ['type' => 'error', 'pesan' => 'Gagal menambahkan kategori. Nama kategori mungkin sudah ada.'];
 }
 
-$newId = count($_SESSION['category']) + 1;
-
-$_SESSION['category'][] = [
-    'id' => $newId,
-    'name' => $nama_kategori,
-    'description' => $keterangan,
-];
-
-$_SESSION['flash'] = ['type' => 'success', 'pesan' => 'Data kategori berhasil ditambahkan.'];
 header('Location: index.php');
 exit;
