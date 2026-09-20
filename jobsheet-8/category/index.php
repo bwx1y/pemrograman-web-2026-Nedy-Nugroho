@@ -1,19 +1,12 @@
 <?php
 $page_title = "Categories";
+require __DIR__ . '/../includes/koneksi.php';
 include __DIR__ . '/../includes/header.php';
-
-if (!isset($_SESSION['category'])) {
-    $dataFile = __DIR__ . '/../data/category.json';
-    if (file_exists($dataFile)) {
-        $_SESSION['category'] = json_decode(file_get_contents($dataFile), true) ?? [];
-    } else {
-        $_SESSION['category'] = [];
-    }
-}
 
 $flash = $_SESSION['flash'] ?? null;
 unset($_SESSION['flash']);
-$daftarCategory = $_SESSION['category'] ?? [];
+
+$daftarCategory = $pdo->query("SELECT * FROM category ORDER BY id DESC")->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <div class="content-header">
