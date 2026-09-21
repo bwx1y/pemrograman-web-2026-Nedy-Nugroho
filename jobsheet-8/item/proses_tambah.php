@@ -1,5 +1,7 @@
 <?php
+global $pdo;
 session_start();
+require __DIR__ . '/../includes/koneksi.php';
 
 $kode = trim($_POST['kode'] ?? '');
 $nama = trim($_POST['nama'] ?? '');
@@ -34,28 +36,34 @@ if (!empty($errors)) {
     exit;
 }
 
-if (!isset($_SESSION['item'])) {
-    $dataFile = __DIR__ . '/../data/item.json';
-    if (file_exists($dataFile)) {
-        $_SESSION['item'] = json_decode(file_get_contents($dataFile), true) ?? [];
-    } else {
-        $_SESSION['item'] = [];
-    }
-}
-
 if (is_numeric($harga)) {
     $harga = 'Rp ' . number_format((float)$harga, 0, ',', '.');
 }
 
-$_SESSION['item'][] = [
-    'code' => $kode,
-    'name' => $nama,
-    'category' => $kategori,
-    'count' => (int) $jumlah,
-    'price' => $harga,
-    'status' => $status,
-];
+try {
+    $stmtCat = $pdo->prepare("SELECT id FROM category WHERE name = :name");
+    $stmtCat->execute(['name' => $kategori]);
+    $catRow = $stmtCat->fetch(PDO::FETCH_ASSOC);
+    $categoryId = $catRow ? $catRow['id'] : null;
 
-$_SESSION['flash'] = ['type' => 'success', 'pesan' => 'Data item berhasil ditambahkan.'];
+    $stmt = $pdo->prepare(
+        "INSERT INTO item (code, name, category_id, category, count, price, status)
+         VALUES (:code, :name, :category_id, :category, :count, :price, :status)
+         RETURNING id"
+    );
+    $stmt->execute([
+        'code' => $kode,
+        'name' => $nama,
+        'category_id' => $categoryId,
+        'category' => $kategori,
+        'count' => (int) $jumlah,
+        'price' => $harga,
+        'status' => $status,
+    ]);
+    $_SESSION['flash'] = ['type' => 'success', 'pesan' => 'Data item berhasil ditambahkan.'];
+} catch (PDOException $e) {
+    $_SESSION['flash'] = ['type' => 'error', 'pesan' => 'Gagal menambahkan item. Kode item mungkin sudah digunakan.'];
+}
+
 header('Location: index.php');
 exit;

@@ -1,4 +1,5 @@
 <?php
+global $pdo;
 $page_title = "Add Item";
 require __DIR__ . '/../includes/koneksi.php';
 include __DIR__ . '/../includes/header.php';
@@ -35,7 +36,7 @@ unset($_SESSION['flash']);
             <select id="kategori" name="kategori" required>
                 <option value="" disabled selected>-- Select Category --</option>
                 <?php foreach ($categories as $cat): ?>
-                    <option value="<?php echo htmlspecialchars($cat['name']); ?>"><?php echo htmlspecialchars($cat['name']); ?></option>
+                    <option value="<?php echo htmlspecialchars($cat['id']); ?>"><?php echo htmlspecialchars($cat['name']); ?></option>
                 <?php endforeach; ?>
             </select>
         </div>
