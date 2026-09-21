@@ -41,10 +41,18 @@ if (is_numeric($harga)) {
 }
 
 try {
-    $stmtCat = $pdo->prepare("SELECT id FROM category WHERE name = :name");
+    $stmtCat = $pdo->prepare("SELECT id, name FROM category WHERE name = :name OR name ILIKE :name");
     $stmtCat->execute(['name' => $kategori]);
     $catRow = $stmtCat->fetch(PDO::FETCH_ASSOC);
-    $categoryId = $catRow ? $catRow['id'] : null;
+
+    if ($catRow) {
+        $categoryId = $catRow['id'];
+        $kategori = $catRow['name'];
+    } else {
+        $stmtNewCat = $pdo->prepare("INSERT INTO category (name, description) VALUES (:name, :desc) RETURNING id");
+        $stmtNewCat->execute(['name' => $kategori, 'desc' => $kategori]);
+        $categoryId = $stmtNewCat->fetchColumn();
+    }
 
     $stmt = $pdo->prepare(
         "INSERT INTO item (code, name, category_id, category, count, price, status)
@@ -62,7 +70,13 @@ try {
     ]);
     $_SESSION['flash'] = ['type' => 'success', 'pesan' => 'Data item berhasil ditambahkan.'];
 } catch (PDOException $e) {
-    $_SESSION['flash'] = ['type' => 'error', 'pesan' => 'Gagal menambahkan item. Kode item mungkin sudah digunakan.'];
+    if ($e->getCode() === '23505') {
+        $_SESSION['flash'] = ['type' => 'error', 'pesan' => "Gagal menambahkan item. Kode item '$kode' sudah digunakan."];
+    } elseif ($e->getCode() === '23503') {
+        $_SESSION['flash'] = ['type' => 'error', 'pesan' => "Gagal menambahkan item. Kategori '$kategori' tidak valid di database."];
+    } else {
+        $_SESSION['flash'] = ['type' => 'error', 'pesan' => 'Gagal menambahkan item: ' . $e->getMessage()];
+    }
 }
 
 header('Location: index.php');
