@@ -1,6 +1,9 @@
 <?php
 $page_title = "Add Item";
+require __DIR__ . '/../includes/koneksi.php';
 include __DIR__ . '/../includes/header.php';
+
+$categories = $pdo->query("SELECT * FROM category ORDER BY name ASC")->fetchAll(PDO::FETCH_ASSOC);
 
 $flash = $_SESSION['flash'] ?? null;
 unset($_SESSION['flash']);
@@ -31,10 +34,9 @@ unset($_SESSION['flash']);
             <label for="kategori">Kategori</label>
             <select id="kategori" name="kategori" required>
                 <option value="" disabled selected>-- Select Category --</option>
-                <option value="Electronic Components">Electronic Components</option>
-                <option value="IT Devices">IT Devices</option>
-                <option value="Office Supplies">Office Supplies</option>
-                <option value="Furniture">Furniture</option>
+                <?php foreach ($categories as $cat): ?>
+                    <option value="<?php echo htmlspecialchars($cat['name']); ?>"><?php echo htmlspecialchars($cat['name']); ?></option>
+                <?php endforeach; ?>
             </select>
         </div>
 

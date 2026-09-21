@@ -43,6 +43,34 @@ if (!isset($_SESSION['item'])) {
     }
 }
 
+$categories = $_SESSION['category'] ?? [];
+if (empty($categories)) {
+    $catFile = __DIR__ . '/../data/category.json';
+    if (file_exists($catFile)) {
+        $categories = json_decode(file_get_contents($catFile), true) ?? [];
+    }
+}
+
+$categoryId = is_numeric($kategori) ? (int)$kategori : null;
+if ($categoryId === null) {
+    foreach ($categories as $cat) {
+        $cName = $cat['name'] ?? $cat['nama'] ?? '';
+        if (strcasecmp($cName, $kategori) === 0) {
+            $categoryId = (int)$cat['id'];
+            break;
+        }
+    }
+}
+if ($categoryId === null) {
+    $map = [
+        'Electronic Components' => 1,
+        'IT Devices' => 2,
+        'Office Supplies' => 3,
+        'Furniture' => 4,
+    ];
+    $categoryId = $map[$kategori] ?? (int)$kategori;
+}
+
 if (is_numeric($harga)) {
     $harga = 'Rp ' . number_format((float)$harga, 0, ',', '.');
 }
@@ -50,7 +78,7 @@ if (is_numeric($harga)) {
 $_SESSION['item'][] = [
     'code' => $kode,
     'name' => $nama,
-    'category' => $kategori,
+    'category' => $categoryId,
     'count' => (int) $jumlah,
     'price' => $harga,
     'status' => $status,
