@@ -1,5 +1,6 @@
 <?php
 session_start();
+require __DIR__ . '/../includes/koneksi.php';
 
 $username = trim($_POST['username'] ?? '');
 $fullname = trim($_POST['fullname'] ?? '');
@@ -34,36 +35,36 @@ if (!empty($errors)) {
     exit;
 }
 
-if (!isset($_SESSION['user'])) {
-    $dataFile = __DIR__ . '/../data/user.json';
-    if (file_exists($dataFile)) {
-        $_SESSION['user'] = json_decode(file_get_contents($dataFile), true) ?? [];
-    } else {
-        $_SESSION['user'] = [];
-    }
-}
-
-$age = '-';
+$age = null;
 if ($tanggal_lahir !== '') {
     try {
         $birthDate = new DateTime($tanggal_lahir);
         $today = new DateTime();
         $age = $today->diff($birthDate)->y;
     } catch (Exception $e) {
-        $age = '-';
+        $age = null;
     }
 }
 
-$_SESSION['user'][] = [
-    'username' => $username,
-    'name' => $fullname,
-    'role' => ucfirst($role),
-    'birth_date' => $tanggal_lahir,
-    'age' => $age,
-    'phone' => $nomor_hp,
-    'password' => '********',
-];
+try {
+    $stmt = $pdo->prepare(
+        'INSERT INTO "user" (username, name, role, birth_date, age, phone, password)
+         VALUES (:username, :name, :role, :birth_date, :age, :phone, :password)
+         RETURNING id'
+    );
+    $stmt->execute([
+        'username' => $username,
+        'name' => $fullname,
+        'role' => ucfirst($role),
+        'birth_date' => $tanggal_lahir,
+        'age' => $age,
+        'phone' => $nomor_hp,
+        'password' => $password,
+    ]);
+    $_SESSION['flash'] = ['type' => 'success', 'pesan' => 'Data member berhasil ditambahkan.'];
+} catch (PDOException $e) {
+    $_SESSION['flash'] = ['type' => 'error', 'pesan' => 'Gagal menambahkan member. Username mungkin sudah digunakan.'];
+}
 
-$_SESSION['flash'] = ['type' => 'success', 'pesan' => 'Data member berhasil ditambahkan.'];
 header('Location: index.php');
 exit;
