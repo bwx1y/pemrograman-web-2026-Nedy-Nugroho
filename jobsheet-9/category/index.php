@@ -6,7 +6,15 @@ include __DIR__ . '/../includes/header.php';
 $flash = $_SESSION['flash'] ?? null;
 unset($_SESSION['flash']);
 
-$daftarCategory = $pdo->query("SELECT * FROM category ORDER BY id DESC")->fetchAll(PDO::FETCH_ASSOC);
+$keyword = trim($_GET['q'] ?? '');
+
+if ($keyword !== '') {
+    $stmt = $pdo->prepare("SELECT * FROM category WHERE name ILIKE :kw OR description ILIKE :kw ORDER BY id DESC");
+    $stmt->execute(['kw' => '%' . $keyword . '%']);
+    $daftarCategory = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} else {
+    $daftarCategory = $pdo->query("SELECT * FROM category ORDER BY id DESC")->fetchAll(PDO::FETCH_ASSOC);
+}
 ?>
 
 <div class="content-header">
@@ -19,8 +27,13 @@ $daftarCategory = $pdo->query("SELECT * FROM category ORDER BY id DESC")->fetchA
 <?php endif; ?>
 
 <div class="search-box">
-    <label for="search-input">Cari Kategori</label>
-    <input type="text" id="search-input" placeholder="Ketik kata kunci...">
+    <form method="get" action="index.php">
+        <div>
+            <label for="search-input">Cari Kategori</label>
+            <input type="text" id="search-input" name="q" value="<?php echo htmlspecialchars($keyword); ?>" placeholder="Ketik kata kunci...">
+        </div>
+        <button type="submit">Cari</button>
+    </form>
 </div>
 
 <div class="table-responsive">
@@ -36,7 +49,7 @@ $daftarCategory = $pdo->query("SELECT * FROM category ORDER BY id DESC")->fetchA
         <tbody>
         <?php if (empty($daftarCategory)): ?>
         <tr>
-            <td colspan="4">Belum ada data kategori. Silakan tambah lewat menu "Add Category".</td>
+            <td colspan="4"><?php echo $keyword !== '' ? 'Tidak ada kategori yang sesuai dengan pencarian.' : 'Belum ada data kategori. Silakan tambah lewat menu "Add Category".'; ?></td>
         </tr>
         <?php else: ?>
             <?php $no = 1; foreach ($daftarCategory as $cat): ?>
