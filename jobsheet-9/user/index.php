@@ -60,8 +60,11 @@ $daftarUser = $pdo->query('SELECT * FROM "user" ORDER BY id DESC')->fetchAll(PDO
                 <td><?php echo htmlspecialchars($u['age'] ?? $u['umur'] ?? '-'); ?></td>
                 <td><?php echo htmlspecialchars($u['phone'] ?? $u['hp'] ?? '-'); ?></td>
                 <td>
-                    <button type="button" class="btn-edit">Edit</button>
-                    <button type="button" class="btn-delete">Hapus</button>
+                    <a href="edit.php?id=<?php echo $u['id']; ?>" class="btn-edit">Edit</a>
+                    <form class="form-hapus" method="post" action="hapus.php">
+                        <input type="hidden" name="id" value="<?php echo $u['id']; ?>">
+                        <button type="submit" class="btn-delete btn-hapus">Hapus</button>
+                    </form>
                 </td>
             </tr>
             <?php endforeach; ?>
