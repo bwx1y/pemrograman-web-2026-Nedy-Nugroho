@@ -7,7 +7,18 @@ include __DIR__ . '/../includes/header.php';
 $flash = $_SESSION['flash'] ?? null;
 unset($_SESSION['flash']);
 
-$daftarUser = $pdo->query('SELECT * FROM "user" ORDER BY id DESC')->fetchAll(PDO::FETCH_ASSOC);
+$perPage = 10;
+$page = max(1, (int) ($_GET['page'] ?? 1));
+$offset = ($page - 1) * $perPage;
+
+$totalRows = (int) $pdo->query('SELECT COUNT(*) FROM "user"')->fetchColumn();
+$stmt = $pdo->prepare('SELECT * FROM "user" ORDER BY id DESC LIMIT :limit OFFSET :offset');
+$stmt->bindValue('limit', $perPage, PDO::PARAM_INT);
+$stmt->bindValue('offset', $offset, PDO::PARAM_INT);
+$stmt->execute();
+
+$daftarUser = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$totalPages = max(1, (int) ceil($totalRows / $perPage));
 ?>
 
 <div class="content-header">
@@ -72,5 +83,11 @@ $daftarUser = $pdo->query('SELECT * FROM "user" ORDER BY id DESC')->fetchAll(PDO
         </tbody>
     </table>
 </div>
+
+<nav class="pagination">
+    <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+        <a href="index.php?page=<?php echo $i; ?>" class="<?php echo $i === $page ? 'active' : ''; ?>"><?php echo $i; ?></a>
+    <?php endfor; ?>
+</nav>
 
 <?php include __DIR__ . '/../includes/footer.php'; ?>
