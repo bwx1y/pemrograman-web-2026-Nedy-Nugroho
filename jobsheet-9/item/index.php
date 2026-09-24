@@ -68,7 +68,10 @@ $daftarItem = $pdo->query("SELECT * FROM item ORDER BY id DESC")->fetchAll(PDO::
                 <td><?php echo htmlspecialchars($item['status'] ?? ''); ?></td>
                 <td>
                     <a href="/item/edit.php?id=<?php echo $item['id'] ?>" class="btn-edit">Edit</a>
-                    <button type="button" class="btn-delete">Hapus</button>
+                    <form class="form-hapus" method="post" action="/item/hapus.php">
+                        <input type="hidden" name="id" value="<?php echo $item['id']; ?>">
+                        <button type="submit" class="btn-delete btn-hapus">Hapus</button>
+                    </form>
                 </td>
             </tr>
             <?php endforeach; ?>
