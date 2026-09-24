@@ -262,6 +262,8 @@ body {
 }
 
 .btn-edit {
+    display: inline-block;
+    text-decoration: none;
     background-color: #f39c12; /* Warna oranye untuk Edit */
     margin-right: 5px;
 }
@@ -276,6 +278,10 @@ body {
 
 .btn-delete:hover {
     background-color: #c0392b;
+}
+
+td form.form-hapus {
+    display: inline;
 }
 
 /* --- Navbar --- */
@@ -298,6 +304,42 @@ body {
 .search-box input {
     width: 100%;
     max-width: 320px;
+}
+
+.search-box form {
+    display: flex;
+    gap: 0.5rem;
+    align-items: flex-end;
+}
+
+.search-box button {
+    padding: 0.55rem 1.2rem;
+    border: none;
+    border-radius: 4px;
+    background-color: #1d5b8a;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* --- Pagination --- */
+.pagination {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.pagination a {
+    padding: 0.4rem 0.75rem;
+    border: 1px solid #cdd4da;
+    border-radius: 4px;
+    color: #1d5b8a;
+    text-decoration: none;
+}
+
+.pagination a.active {
+    background-color: #1d5b8a;
+    color: #fff;
+    border-color: #1d5b8a;
 }
 
 .error {
