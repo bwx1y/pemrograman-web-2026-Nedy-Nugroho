@@ -46,7 +46,10 @@ $daftarCategory = $pdo->query("SELECT * FROM category ORDER BY id DESC")->fetchA
                 <td><?php echo htmlspecialchars($cat['description'] ?? $cat['deskripsi'] ?? ''); ?></td>
                 <td>
                     <a href="/category/edit.php?id=<?php echo $cat['id'] ?>" class="btn-edit">Edit</a>
-                    <button type="button" class="btn-delete">Hapus</button>
+                    <form class="form-hapus" method="post" action="/category/hapus.php">
+                        <input type="hidden" name="id" value="<?php echo $cat['id']; ?>">
+                        <button type="submit" class="btn-delete btn-hapus">Hapus</button>
+                    </form>
                 </td>
             </tr>
             <?php endforeach; ?>
