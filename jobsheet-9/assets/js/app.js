@@ -116,6 +116,6 @@ function initHapusConfirm() {
 document.addEventListener("DOMContentLoaded", function () {
     initNavToggle();
     initHapusConfirm();
-    initTableFilter();
+    // initTableFilter();
     initValidasiForm();
 });
