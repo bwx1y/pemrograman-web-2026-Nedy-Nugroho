@@ -96,19 +96,19 @@ function initValidasiForm() {
     });
 }
 
-// Memakai event delegation di document karena baris tabel sekarang
-// dirender dinamis via fetch (lihat buku.js/anggota.js) sehingga
-// tombol .btn-hapus belum tentu ada saat DOMContentLoaded.
+// Tombol Hapus kini berada di dalam <form class="form-hapus" method="post">
+// yang benar-benar mengirim request DELETE ke server. Konfirmasi dilakukan
+// pada event "submit" agar bisa dibatalkan (preventDefault) sebelum request terkirim.
 function initHapusConfirm() {
-    document.addEventListener("click", function (e) {
-        const btn = e.target.closest(".btn-hapus");
-        if (!btn) return;
+    document.addEventListener("submit", function (e) {
+        const form = e.target;
+        if (!form.classList.contains("form-hapus")) return;
 
-        const row = btn.closest("tr");
+        const row = form.closest("tr");
         const nama = row ? row.querySelector("td")?.textContent : "data ini";
         const yakin = confirm("Yakin ingin menghapus \"" + nama + "\"?");
-        if (yakin && row) {
-            row.remove();
+        if (!yakin) {
+            e.preventDefault();
         }
     });
 }
