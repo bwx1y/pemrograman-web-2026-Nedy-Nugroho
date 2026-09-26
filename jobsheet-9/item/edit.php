@@ -61,12 +61,15 @@ unset($_SESSION['flash']);
 
         <div class="form-group">
             <label for="jumlah">Item Quantity (Count)</label>
-            <input type="number" id="jumlah" name="jumlah" min="0" value="<?php echo htmlspecialchars($item['count'] ?? 0); ?>" required>
+            <input type="number" id="jumlah" name="jumlah" min="0" value="<?php echo htmlspecialchars($item['count'] ?? 0); ?>" pattern="^[0-9]+$" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
         </div>
 
         <div class="form-group">
             <label for="harga">Purchase Price</label>
-            <input type="text" id="harga" name="harga" value="<?php echo htmlspecialchars($item['price'] ?? ''); ?>" required>
+            <div class="input-group">
+                <span class="input-addon">Rp</span>
+                <input type="text" id="harga" name="harga" value="<?php echo htmlspecialchars(preg_replace('/[^0-9]/', '', $item['price'] ?? '')); ?>" placeholder="0" pattern="^[0-9]+$" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
+            </div>
         </div>
 
         <div class="form-group">

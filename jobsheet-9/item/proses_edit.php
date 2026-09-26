@@ -31,11 +31,12 @@ if ($nama === '') {
 if ($kategori === '') {
     $errors[] = "Kategori wajib dipilih.";
 }
-if (!is_numeric($jumlah) || (int)$jumlah < 0) {
-    $errors[] = "Jumlah item harus berupa angka tidak negatif.";
+if (!preg_match('/^\d+$/', (string)$jumlah)) {
+    $errors[] = "Jumlah item harus berupa angka dan tidak boleh di bawah 0.";
 }
-if ($harga === '') {
-    $errors[] = "Harga pembelian wajib diisi.";
+$cleanHarga = preg_replace('/[^0-9]/', '', $harga);
+if ($harga === '' || !preg_match('/^\d+$/', $cleanHarga)) {
+    $errors[] = "Harga pembelian harus berupa angka dan tidak boleh di bawah 0.";
 }
 if ($status === '') {
     $errors[] = "Status wajib dipilih.";
@@ -47,8 +48,8 @@ if (!empty($errors)) {
     exit;
 }
 
-if (is_numeric($harga)) {
-    $harga = 'Rp ' . number_format((float)$harga, 0, ',', '.');
+if ($cleanHarga !== '') {
+    $harga = 'Rp ' . number_format((float)$cleanHarga, 0, ',', '.');
 }
 
 try {

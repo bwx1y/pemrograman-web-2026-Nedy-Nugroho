@@ -63,11 +63,13 @@ function tampilkanError(input, pesan) {
     const span = document.createElement("span");
     span.className = "error";
     span.textContent = pesan;
-    input.insertAdjacentElement("afterend", span);
+    const target = input.closest(".input-group") || input;
+    target.insertAdjacentElement("afterend", span);
 }
 
 function hapusError(input) {
-    const next = input.nextElementSibling;
+    const target = input.closest(".input-group") || input;
+    const next = target.nextElementSibling;
     if (next && next.classList.contains("error")) {
         next.remove();
     }
@@ -89,6 +91,23 @@ function initValidasiForm() {
                 hapusError(input);
             }
         });
+
+        const jumlahInput = form.querySelector("#jumlah");
+        if (jumlahInput && jumlahInput.value.trim() !== "") {
+            if (!/^\d+$/.test(jumlahInput.value.trim())) {
+                tampilkanError(jumlahInput, "Jumlah item harus berupa angka dan tidak boleh di bawah 0.");
+                valid = false;
+            }
+        }
+
+        const hargaInput = form.querySelector("#harga");
+        if (hargaInput && hargaInput.value.trim() !== "") {
+            const rawHarga = hargaInput.value.replace(/[^0-9]/g, "");
+            if (!/^\d+$/.test(rawHarga)) {
+                tampilkanError(hargaInput, "Harga harus berupa angka dan tidak boleh di bawah 0.");
+                valid = false;
+            }
+        }
 
         if (!valid) {
             e.preventDefault();
