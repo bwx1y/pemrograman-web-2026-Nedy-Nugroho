@@ -9,11 +9,18 @@ $totalMembers = (int) $pdo->query('SELECT COUNT(*) FROM "user"')->fetchColumn();
 $damagedCount = (int) $pdo->query("SELECT COUNT(*) FROM item WHERE status = 'Damaged'")->fetchColumn();
 
 $totalAssetValue = 0;
-$stmt = $pdo->query("SELECT price, count FROM item");
+$totalDamagedValue = 0;
+$stmt = $pdo->query("SELECT price, count, status FROM item");
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
     $price = (int) preg_replace('/[^0-9]/', '', $row['price'] ?? '0');
     $qty = (int) ($row['count'] ?? 0);
-    $totalAssetValue += ($price * $qty);
+    $itemTotal = ($price * $qty);
+    $status = strtolower(trim($row['status'] ?? ''));
+    if ($status === 'good') {
+        $totalAssetValue += $itemTotal;
+    } elseif ($status === 'damaged') {
+        $totalDamagedValue += $itemTotal;
+    }
 }
 ?>
 
@@ -38,13 +45,19 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
     <div class="card barang">
         <h3>Total Asset Value</h3>
         <div class="value">Rp <?php echo number_format($totalAssetValue, 0, ',', '.'); ?></div>
-        <p class="desc">Total value of all items</p>
+        <p class="desc">Total value of items in good condition</p>
     </div>
 
     <div class="card rusak">
         <h3>Total Damaged Items</h3>
         <div class="value"><?php echo $damagedCount; ?></div>
         <p class="desc">Items with damaged status</p>
+    </div>
+
+    <div class="card rusak">
+        <h3>Total Damaged Value</h3>
+        <div class="value">Rp <?php echo number_format($totalDamagedValue, 0, ',', '.'); ?></div>
+        <p class="desc">Total value of damaged items</p>
     </div>
 
 </div>
