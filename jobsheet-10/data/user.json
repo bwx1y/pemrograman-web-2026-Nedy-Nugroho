@@ -1,0 +1,47 @@
+[
+    {
+        "username": "john_doe",
+        "name": "John Doe",
+        "role": "Admin",
+        "birth_date": "15-03-1990",
+        "age": 36,
+        "phone": "081234567890",
+        "password": "********"
+    },
+    {
+        "username": "jane_smith",
+        "name": "Jane Smith",
+        "role": "Staff",
+        "birth_date": "22-07-1988",
+        "age": 38,
+        "phone": "082345678901",
+        "password": "********"
+    },
+    {
+        "username": "budi_santoso",
+        "name": "Budi Santoso",
+        "role": "Member",
+        "birth_date": "10-11-1995",
+        "age": 30,
+        "phone": "083456789012",
+        "password": "********"
+    },
+    {
+        "username": "siti_rahayu",
+        "name": "Siti Rahayu",
+        "role": "Member",
+        "birth_date": "05-01-1992",
+        "age": 34,
+        "phone": "084567890123",
+        "password": "********"
+    },
+    {
+        "username": "ahmad_fauzi",
+        "name": "Ahmad Fauzi",
+        "role": "Staff",
+        "birth_date": "28-09-1993",
+        "age": 32,
+        "phone": "085678901234",
+        "password": "********"
+    }
+]
