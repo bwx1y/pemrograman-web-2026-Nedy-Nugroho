@@ -1,6 +1,6 @@
 <?php
+require __DIR__ . '/../includes/auth.php';
 global $pdo;
-session_start();
 require __DIR__ . '/../includes/koneksi.php';
 
 $kode = trim($_POST['kode'] ?? '');

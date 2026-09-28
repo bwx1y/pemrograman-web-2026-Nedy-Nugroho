@@ -1,4 +1,5 @@
 <?php
+require __DIR__ . '/../includes/auth.php';
 global $pdo;
 $page_title = "Edit Item";
 require __DIR__ . '/../includes/koneksi.php';
