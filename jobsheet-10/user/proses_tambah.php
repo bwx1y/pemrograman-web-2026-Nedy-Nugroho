@@ -1,4 +1,5 @@
 <?php
+global $pdo;
 require __DIR__ . '/../includes/auth.php';
 require __DIR__ . '/../includes/koneksi.php';
 
@@ -59,7 +60,7 @@ try {
         'birth_date' => $tanggal_lahir,
         'age' => $age,
         'phone' => $nomor_hp,
-        'password' => $password,
+        'password' => password_hash($password, PASSWORD_DEFAULT),
     ]);
     $_SESSION['flash'] = ['type' => 'success', 'pesan' => 'Data member berhasil ditambahkan.'];
 } catch (PDOException $e) {

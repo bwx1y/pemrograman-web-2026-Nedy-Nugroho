@@ -70,7 +70,7 @@ try {
             'birth_date' => $tanggal_lahir,
             'age' => $age,
             'phone' => $nomor_hp,
-            'password' => $password,
+            'password' => password_hash($password, PASSWORD_DEFAULT),
             'id' => $id,
         ];
     } else {
