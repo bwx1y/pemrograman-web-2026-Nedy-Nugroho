@@ -14,7 +14,7 @@ $base = $__rel === '' ? '' : str_repeat('../', substr_count($__rel, '/') + 1);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Goods Office<?php echo isset($page_title) ? ' | ' . $page_title : ''; ?></title>
-    <link rel="stylesheet" href="<?php echo $base; ?>assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
 
@@ -23,11 +23,11 @@ $base = $__rel === '' ? '' : str_repeat('../', substr_count($__rel, '/') + 1);
     <aside class="sidebar">
         <h2>Goods Office</h2>
         <ul>
-            <li><a href="<?php echo $base; ?>index.php">Home</a></li>
-            <li><a href="<?php echo $base; ?>item/index.php">List of Items</a></li>
+            <li><a href="/index.php">Home</a></li>
+            <li><a href="/item/index.php">List of Items</a></li>
             <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'Admin'): ?>
-                <li><a href="<?php echo $base; ?>category/index.php">Categories</a></li>
-                <li><a href="<?php echo $base; ?>user/index.php">Members</a></li>
+                <li><a href="/category/index.php">Categories</a></li>
+                <li><a href="/user/index.php">Members</a></li>
             <?php endif; ?>
         </ul>
 
@@ -37,9 +37,9 @@ $base = $__rel === '' ? '' : str_repeat('../', substr_count($__rel, '/') + 1);
                     <span class="user-name"><?php echo htmlspecialchars($_SESSION['nama'] ?? 'User'); ?></span>
                     <span class="user-role"><?php echo htmlspecialchars($_SESSION['role'] ?? ''); ?></span>
                 </div>
-                <a href="<?php echo $base; ?>auth/logout.php" class="btn-logout">Logout</a>
+                <a href="/auth/logout.php" class="btn-logout">Logout</a>
             <?php else: ?>
-                <a href="<?php echo $base; ?>auth/login.php" class="btn-login-sidebar">Login</a>
+                <a href="/auth/login.php" class="btn-login-sidebar">Login</a>
             <?php endif; ?>
         </div>
     </aside>
