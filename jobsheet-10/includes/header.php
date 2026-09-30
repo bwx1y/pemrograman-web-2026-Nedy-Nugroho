@@ -25,9 +25,23 @@ $base = $__rel === '' ? '' : str_repeat('../', substr_count($__rel, '/') + 1);
         <ul>
             <li><a href="<?php echo $base; ?>index.php">Home</a></li>
             <li><a href="<?php echo $base; ?>item/index.php">List of Items</a></li>
-            <li><a href="<?php echo $base; ?>category/index.php">Categories</a></li>
-            <li><a href="<?php echo $base; ?>user/index.php">Members</a></li>
+            <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'Admin'): ?>
+                <li><a href="<?php echo $base; ?>category/index.php">Categories</a></li>
+                <li><a href="<?php echo $base; ?>user/index.php">Members</a></li>
+            <?php endif; ?>
         </ul>
+
+        <div class="sidebar-footer">
+            <?php if (isset($_SESSION['user_id'])): ?>
+                <div class="user-info">
+                    <span class="user-name"><?php echo htmlspecialchars($_SESSION['nama'] ?? 'User'); ?></span>
+                    <span class="user-role"><?php echo htmlspecialchars($_SESSION['role'] ?? ''); ?></span>
+                </div>
+                <a href="<?php echo $base; ?>auth/logout.php" class="btn-logout">Logout</a>
+            <?php else: ?>
+                <a href="<?php echo $base; ?>auth/login.php" class="btn-login-sidebar">Login</a>
+            <?php endif; ?>
+        </div>
     </aside>
 
     <main class="content">
