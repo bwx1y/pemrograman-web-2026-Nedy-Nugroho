@@ -1,7 +1,10 @@
 <?php
 require __DIR__ . '/../includes/auth.php';
+require_once __DIR__ . '/../includes/csrf.php';
 global $pdo;
 require __DIR__ . '/../includes/koneksi.php';
+
+csrf_verify();
 
 $kode = trim($_POST['kode'] ?? '');
 $nama = trim($_POST['nama'] ?? '');
