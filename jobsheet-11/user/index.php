@@ -51,14 +51,14 @@ $totalPages = max(1, (int)ceil($totalRows / $perPage));
 </div>
 
 <?php if ($flash): ?>
-    <p class="flash flash-<?php echo $flash['type']; ?>"><?php echo htmlspecialchars($flash['pesan']); ?></p>
+    <p class="flash flash-<?php echo e($flash['type']); ?>"><?php echo e($flash['pesan']); ?></p>
 <?php endif; ?>
 
 <div class="search-box">
     <form method="get" action="index.php">
         <div>
             <label for="search-input">Cari Member</label>
-            <input type="text" id="search-input" name="q" value="<?php echo htmlspecialchars($keyword); ?>"
+            <input type="text" id="search-input" name="q" value="<?php echo e($keyword); ?>"
                    placeholder="Cari username atau nama...">
         </div>
 
@@ -97,17 +97,17 @@ $totalPages = max(1, (int)ceil($totalRows / $perPage));
         <?php else: ?>
             <?php foreach ($daftarUser as $u): ?>
                 <tr>
-                    <td><?php echo htmlspecialchars($u['username'] ?? ''); ?></td>
-                    <td><?php echo htmlspecialchars($u['name'] ?? $u['nama'] ?? ''); ?></td>
-                    <td><?php echo htmlspecialchars($u['role'] ?? ''); ?></td>
-                    <td><?php echo htmlspecialchars($u['birth_date'] ?? $u['tanggal_lahir'] ?? '-'); ?></td>
-                    <td><?php echo htmlspecialchars($u['age'] ?? $u['umur'] ?? '-'); ?></td>
-                    <td><?php echo htmlspecialchars($u['phone'] ?? $u['hp'] ?? '-'); ?></td>
+                    <td><?php echo e($u['username'] ?? ''); ?></td>
+                    <td><?php echo e($u['name'] ?? $u['nama'] ?? ''); ?></td>
+                    <td><?php echo e($u['role'] ?? ''); ?></td>
+                    <td><?php echo e($u['birth_date'] ?? $u['tanggal_lahir'] ?? '-'); ?></td>
+                    <td><?php echo (int) ($u['age'] ?? $u['umur'] ?? 0); ?></td>
+                    <td><?php echo e($u['phone'] ?? $u['hp'] ?? '-'); ?></td>
                     <td>
-                        <a href="edit.php?id=<?php echo $u['id']; ?>" class="btn-edit">Edit</a>
+                        <a href="edit.php?id=<?php echo (int) $u['id']; ?>" class="btn-edit">Edit</a>
                         <form class="form-hapus" method="post" action="hapus.php">
                             <?php echo csrf_field(); ?>
-                            <input type="hidden" name="id" value="<?php echo $u['id']; ?>">
+                            <input type="hidden" name="id" value="<?php echo (int) $u['id']; ?>">
                             <button type="submit" class="btn-delete btn-hapus">Hapus</button>
                         </form>
                     </td>

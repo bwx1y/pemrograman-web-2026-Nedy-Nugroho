@@ -43,14 +43,14 @@ $categories = $pdo->query("SELECT * FROM category ORDER BY name ASC")->fetchAll(
 </div>
 
 <?php if ($flash): ?>
-    <p class="flash flash-<?php echo $flash['type']; ?>"><?php echo htmlspecialchars($flash['pesan']); ?></p>
+    <p class="flash flash-<?php echo e($flash['type']); ?>"><?php echo e($flash['pesan']); ?></p>
 <?php endif; ?>
 
 <div class="search-box">
     <form method="get" action="index.php">
         <div>
             <label for="search-input">Cari Items</label>
-            <input type="text" id="search-input" name="q" value="<?php echo htmlspecialchars($keyword); ?>" placeholder="Ketik kata kunci...">
+            <input type="text" id="search-input" name="q" value="<?php echo e($keyword); ?>" placeholder="Ketik kata kunci...">
         </div>
 
         <div>
@@ -58,8 +58,8 @@ $categories = $pdo->query("SELECT * FROM category ORDER BY name ASC")->fetchAll(
             <select id="category-filter" name="category" onchange="this.form.submit()">
                 <option value="">Semua Kategori</option>
                 <?php foreach ($categories as $cat): ?>
-                    <option value="<?php echo htmlspecialchars($cat['name']); ?>" <?php echo $selectedCategory === $cat['name'] ? 'selected' : ''; ?>>
-                        <?php echo htmlspecialchars($cat['name']); ?>
+                    <option value="<?php echo e($cat['name']); ?>" <?php echo $selectedCategory === $cat['name'] ? 'selected' : ''; ?>>
+                        <?php echo e($cat['name']); ?>
                     </option>
                 <?php endforeach; ?>
             </select>
@@ -99,17 +99,17 @@ $categories = $pdo->query("SELECT * FROM category ORDER BY name ASC")->fetchAll(
         <?php else: ?>
             <?php foreach ($daftarItem as $item): ?>
             <tr>
-                <td><?php echo htmlspecialchars($item['code'] ?? $item['kode'] ?? ''); ?></td>
-                <td><?php echo htmlspecialchars($item['name'] ?? $item['nama'] ?? ''); ?></td>
-                <td><?php echo htmlspecialchars($item['category'] ?? $item['kategori'] ?? ''); ?></td>
-                <td><?php echo htmlspecialchars($item['count'] ?? $item['jumlah'] ?? ''); ?></td>
-                <td><?php echo htmlspecialchars($item['price'] ?? $item['harga'] ?? ''); ?></td>
-                <td><?php echo htmlspecialchars($item['status'] ?? ''); ?></td>
+                <td><?php echo e($item['code'] ?? $item['kode'] ?? ''); ?></td>
+                <td><?php echo e($item['name'] ?? $item['nama'] ?? ''); ?></td>
+                <td><?php echo e($item['category'] ?? $item['kategori'] ?? ''); ?></td>
+                <td><?php echo (int) ($item['count'] ?? $item['jumlah'] ?? 0); ?></td>
+                <td><?php echo e($item['price'] ?? $item['harga'] ?? ''); ?></td>
+                <td><?php echo e($item['status'] ?? ''); ?></td>
                 <td>
-                    <a href="edit.php?id=<?php echo $item['id']; ?>" class="btn-edit">Edit</a>
+                    <a href="edit.php?id=<?php echo (int) $item['id']; ?>" class="btn-edit">Edit</a>
                     <form class="form-hapus" method="post" action="hapus.php">
                         <?php echo csrf_field(); ?>
-                        <input type="hidden" name="id" value="<?php echo $item['id']; ?>">
+                        <input type="hidden" name="id" value="<?php echo (int) $item['id']; ?>">
                         <button type="submit" class="btn-delete btn-hapus">Hapus</button>
                     </form>
                 </td>

@@ -23,14 +23,14 @@ if ($keyword !== '') {
 </div>
 
 <?php if ($flash): ?>
-    <p class="flash flash-<?php echo $flash['type']; ?>"><?php echo htmlspecialchars($flash['pesan']); ?></p>
+    <p class="flash flash-<?php echo e($flash['type']); ?>"><?php echo e($flash['pesan']); ?></p>
 <?php endif; ?>
 
 <div class="search-box">
     <form method="get" action="index.php">
         <div>
             <label for="search-input">Cari Kategori</label>
-            <input type="text" id="search-input" name="q" value="<?php echo htmlspecialchars($keyword); ?>" placeholder="Ketik kata kunci...">
+            <input type="text" id="search-input" name="q" value="<?php echo e($keyword); ?>" placeholder="Ketik kata kunci...">
         </div>
         <button type="submit">Cari</button>
     </form>
@@ -55,13 +55,13 @@ if ($keyword !== '') {
             <?php $no = 1; foreach ($daftarCategory as $cat): ?>
             <tr>
                 <td><?php echo $no++; ?></td>
-                <td><?php echo htmlspecialchars($cat['name'] ?? $cat['nama'] ?? ''); ?></td>
-                <td><?php echo htmlspecialchars($cat['description'] ?? $cat['deskripsi'] ?? ''); ?></td>
+                <td><?php echo e($cat['name'] ?? $cat['nama'] ?? ''); ?></td>
+                <td><?php echo e($cat['description'] ?? $cat['deskripsi'] ?? ''); ?></td>
                 <td>
-                    <a href="/category/edit.php?id=<?php echo $cat['id'] ?>" class="btn-edit">Edit</a>
+                    <a href="/category/edit.php?id=<?php echo (int) $cat['id']; ?>" class="btn-edit">Edit</a>
                     <form class="form-hapus" method="post" action="/category/hapus.php">
                         <?php echo csrf_field(); ?>
-                        <input type="hidden" name="id" value="<?php echo $cat['id']; ?>">
+                        <input type="hidden" name="id" value="<?php echo (int) $cat['id']; ?>">
                         <button type="submit" class="btn-delete btn-hapus">Hapus</button>
                     </form>
                 </td>

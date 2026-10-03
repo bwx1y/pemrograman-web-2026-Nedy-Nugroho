@@ -2,6 +2,7 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+require_once __DIR__ . '/../includes/helpers.php';
 require_once __DIR__ . '/../includes/csrf.php';
 if (isset($_SESSION['user_id'])) {
     header('Location: ../index.php');
@@ -643,7 +644,7 @@ unset($_SESSION['flash']);
         <h2>Login</h2>
 
         <?php if ($flash): ?>
-            <p class="flash flash-<?php echo $flash['type']; ?>"><?php echo htmlspecialchars($flash['pesan']); ?></p>
+            <p class="flash flash-<?php echo e($flash['type']); ?>"><?php echo e($flash['pesan']); ?></p>
         <?php endif; ?>
 
         <form method="POST" action="proses_login.php">

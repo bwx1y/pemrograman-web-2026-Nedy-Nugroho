@@ -32,21 +32,21 @@ unset($_SESSION['flash']);
     <h2>Edit Item Data</h2>
 
     <?php if ($flash): ?>
-        <p class="flash flash-<?php echo $flash['type']; ?>"><?php echo htmlspecialchars($flash['pesan']); ?></p>
+        <p class="flash flash-<?php echo e($flash['type']); ?>"><?php echo e($flash['pesan']); ?></p>
     <?php endif; ?>
 
     <form id="form-tambah" method="POST" action="proses_edit.php">
         <?php echo csrf_field(); ?>
-        <input type="hidden" name="id" value="<?php echo htmlspecialchars($item['id']); ?>">
+        <input type="hidden" name="id" value="<?php echo (int) $item['id']; ?>">
 
         <div class="form-group">
             <label for="kode">Item Code</label>
-            <input type="text" id="kode" name="kode" value="<?php echo htmlspecialchars($item['code'] ?? ''); ?>" required>
+            <input type="text" id="kode" name="kode" value="<?php echo e($item['code'] ?? ''); ?>" required>
         </div>
 
         <div class="form-group">
             <label for="nama">Item Name</label>
-            <input type="text" id="nama" name="nama" value="<?php echo htmlspecialchars($item['name'] ?? ''); ?>" required>
+            <input type="text" id="nama" name="nama" value="<?php echo e($item['name'] ?? ''); ?>" required>
         </div>
 
         <div class="form-group">
@@ -54,8 +54,8 @@ unset($_SESSION['flash']);
             <select id="kategori" name="kategori" required>
                 <option value="" disabled>-- Select Category --</option>
                 <?php foreach ($categories as $cat): ?>
-                    <option value="<?php echo htmlspecialchars($cat['id']); ?>" <?php echo ((string)$cat['id'] === (string)($item['category_id'] ?? '') || $cat['name'] === ($item['category'] ?? '')) ? 'selected' : ''; ?>>
-                        <?php echo htmlspecialchars($cat['name']); ?>
+                    <option value="<?php echo (int) $cat['id']; ?>" <?php echo ((string)$cat['id'] === (string)($item['category_id'] ?? '') || $cat['name'] === ($item['category'] ?? '')) ? 'selected' : ''; ?>>
+                        <?php echo e($cat['name']); ?>
                     </option>
                 <?php endforeach; ?>
             </select>
@@ -63,14 +63,14 @@ unset($_SESSION['flash']);
 
         <div class="form-group">
             <label for="jumlah">Item Quantity (Count)</label>
-            <input type="number" id="jumlah" name="jumlah" min="0" value="<?php echo htmlspecialchars($item['count'] ?? 0); ?>" pattern="^[0-9]+$" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
+            <input type="number" id="jumlah" name="jumlah" min="0" value="<?php echo (int) ($item['count'] ?? 0); ?>" pattern="^[0-9]+$" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
         </div>
 
         <div class="form-group">
             <label for="harga">Purchase Price</label>
             <div class="input-group">
                 <span class="input-addon">Rp</span>
-                <input type="text" id="harga" name="harga" value="<?php echo htmlspecialchars(preg_replace('/[^0-9]/', '', $item['price'] ?? '')); ?>" placeholder="0" pattern="^[0-9]+$" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
+                <input type="text" id="harga" name="harga" value="<?php echo e(preg_replace('/[^0-9]/', '', $item['price'] ?? '')); ?>" placeholder="0" pattern="^[0-9]+$" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
             </div>
         </div>
 

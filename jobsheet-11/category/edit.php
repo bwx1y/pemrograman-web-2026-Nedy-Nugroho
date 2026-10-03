@@ -30,21 +30,21 @@ unset($_SESSION['flash']);
     <h2>Edit Category Data</h2>
 
     <?php if ($flash): ?>
-        <p class="flash flash-<?php echo $flash['type']; ?>"><?php echo htmlspecialchars($flash['pesan']); ?></p>
+        <p class="flash flash-<?php echo e($flash['type']); ?>"><?php echo e($flash['pesan']); ?></p>
     <?php endif; ?>
 
     <form id="form-tambah" method="POST" action="proses_edit.php">
         <?php echo csrf_field(); ?>
-        <input type="hidden" name="id" value="<?php echo htmlspecialchars($category['id']); ?>">
+        <input type="hidden" name="id" value="<?php echo (int) $category['id']; ?>">
 
         <div class="form-group">
             <label for="nama_kategori">Category Name</label>
-            <input type="text" id="nama_kategori" name="nama_kategori" value="<?php echo htmlspecialchars($category['name'] ?? ''); ?>" required>
+            <input type="text" id="nama_kategori" name="nama_kategori" value="<?php echo e($category['name'] ?? ''); ?>" required>
         </div>
 
         <div class="form-group">
             <label for="keterangan">Description</label>
-            <input type="text" id="keterangan" name="keterangan" value="<?php echo htmlspecialchars($category['description'] ?? ''); ?>" required>
+            <input type="text" id="keterangan" name="keterangan" value="<?php echo e($category['description'] ?? ''); ?>" required>
         </div>
 
         <div class="form-actions">

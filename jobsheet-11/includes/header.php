@@ -2,6 +2,7 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+require_once __DIR__ . '/helpers.php';
 require_once __DIR__ . '/csrf.php';
 
 $__jobsheetRoot = dirname(__DIR__);
@@ -652,8 +653,8 @@ $base = $__rel === '' ? '' : str_repeat('../', substr_count($__rel, '/') + 1);
         <div class="sidebar-footer">
             <?php if (isset($_SESSION['user_id'])): ?>
                 <div class="user-info">
-                    <span class="user-name"><?php echo htmlspecialchars($_SESSION['nama'] ?? 'User'); ?></span>
-                    <span class="user-role"><?php echo htmlspecialchars($_SESSION['role'] ?? ''); ?></span>
+                    <span class="user-name"><?php echo e($_SESSION['nama'] ?? 'User'); ?></span>
+                    <span class="user-role"><?php echo e($_SESSION['role'] ?? ''); ?></span>
                 </div>
                 <a href="/auth/logout.php" class="btn-logout">Logout</a>
             <?php else: ?>

@@ -17,7 +17,7 @@ unset($_SESSION['flash']);
     <h2>Add Item Data</h2>
 
     <?php if ($flash): ?>
-        <p class="flash flash-<?php echo $flash['type']; ?>"><?php echo htmlspecialchars($flash['pesan']); ?></p>
+        <p class="flash flash-<?php echo e($flash['type']); ?>"><?php echo e($flash['pesan']); ?></p>
     <?php endif; ?>
 
     <form id="form-tambah" method="POST" action="proses_tambah.php">
@@ -38,7 +38,7 @@ unset($_SESSION['flash']);
             <select id="kategori" name="kategori" required>
                 <option value="" disabled selected>-- Select Category --</option>
                 <?php foreach ($categories as $cat): ?>
-                    <option value="<?php echo htmlspecialchars($cat['id']); ?>"><?php echo htmlspecialchars($cat['name']); ?></option>
+                    <option value="<?php echo (int) $cat['id']; ?>"><?php echo e($cat['name']); ?></option>
                 <?php endforeach; ?>
             </select>
         </div>

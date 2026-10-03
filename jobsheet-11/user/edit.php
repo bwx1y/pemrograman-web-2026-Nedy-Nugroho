@@ -36,21 +36,21 @@ unset($_SESSION['flash']);
     <h2>Edit Member Data</h2>
 
     <?php if ($flash): ?>
-        <p class="flash flash-<?php echo $flash['type']; ?>"><?php echo htmlspecialchars($flash['pesan']); ?></p>
+        <p class="flash flash-<?php echo e($flash['type']); ?>"><?php echo e($flash['pesan']); ?></p>
     <?php endif; ?>
 
     <form id="form-tambah" method="POST" action="proses_edit.php">
         <?php echo csrf_field(); ?>
-        <input type="hidden" name="id" value="<?php echo htmlspecialchars($u['id']); ?>">
+        <input type="hidden" name="id" value="<?php echo (int) $u['id']; ?>">
 
         <div class="form-group">
             <label for="username">Username</label>
-            <input type="text" id="username" name="username" value="<?php echo htmlspecialchars($u['username'] ?? ''); ?>" required>
+            <input type="text" id="username" name="username" value="<?php echo e($u['username'] ?? ''); ?>" required>
         </div>
 
         <div class="form-group">
             <label for="fullname">Full Name</label>
-            <input type="text" id="fullname" name="fullname" value="<?php echo htmlspecialchars($u['name'] ?? ''); ?>" required>
+            <input type="text" id="fullname" name="fullname" value="<?php echo e($u['name'] ?? ''); ?>" required>
         </div>
 
         <div class="form-group">
@@ -65,12 +65,12 @@ unset($_SESSION['flash']);
 
         <div class="form-group">
             <label for="tanggal_lahir">Tanggal Lahir</label>
-            <input type="date" id="tanggal_lahir" name="tanggal_lahir" value="<?php echo htmlspecialchars($birthDateVal); ?>" required>
+            <input type="date" id="tanggal_lahir" name="tanggal_lahir" value="<?php echo e($birthDateVal); ?>" required>
         </div>
 
         <div class="form-group">
             <label for="nomor_hp">Nomor HP</label>
-            <input type="tel" id="nomor_hp" name="nomor_hp" value="<?php echo htmlspecialchars($u['phone'] ?? ''); ?>" required>
+            <input type="tel" id="nomor_hp" name="nomor_hp" value="<?php echo e($u['phone'] ?? ''); ?>" required>
         </div>
 
         <div class="form-group">

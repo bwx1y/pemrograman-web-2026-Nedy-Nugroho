@@ -13,7 +13,7 @@ unset($_SESSION['flash']);
     <h2>Add Member Data</h2>
 
     <?php if ($flash): ?>
-        <p class="flash flash-<?php echo $flash['type']; ?>"><?php echo htmlspecialchars($flash['pesan']); ?></p>
+        <p class="flash flash-<?php echo e($flash['type']); ?>"><?php echo e($flash['pesan']); ?></p>
     <?php endif; ?>
 
     <form id="form-tambah" method="POST" action="proses_tambah.php">
