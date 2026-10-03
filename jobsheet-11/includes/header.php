@@ -15,7 +15,7 @@ $base = $__rel === '' ? '' : str_repeat('../', substr_count($__rel, '/') + 1);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Goods Office<?php echo isset($page_title) ? ' | ' . $page_title : ''; ?></title>
+    <title>Goods Office<?php echo isset($page_title) ? ' | ' . e($page_title) : ''; ?></title>
     <link rel="stylesheet" href="/assets/css/style.css">
     <style>
         /* Reset margin & padding dasar */
