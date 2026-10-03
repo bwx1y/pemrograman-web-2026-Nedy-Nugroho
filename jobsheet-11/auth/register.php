@@ -2,6 +2,7 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+require_once __DIR__ . '/../includes/csrf.php';
 if (isset($_SESSION['user_id'])) {
     header('Location: ../index.php');
     exit;
@@ -646,6 +647,7 @@ unset($_SESSION['flash']);
         <?php endif; ?>
 
         <form method="POST" action="proses_register.php">
+            <?php echo csrf_field(); ?>
 
             <div class="form-group">
                 <label for="username">Username</label>

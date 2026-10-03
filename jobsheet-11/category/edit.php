@@ -34,6 +34,7 @@ unset($_SESSION['flash']);
     <?php endif; ?>
 
     <form id="form-tambah" method="POST" action="proses_edit.php">
+        <?php echo csrf_field(); ?>
         <input type="hidden" name="id" value="<?php echo htmlspecialchars($category['id']); ?>">
 
         <div class="form-group">

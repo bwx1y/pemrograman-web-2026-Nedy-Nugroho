@@ -108,6 +108,7 @@ $categories = $pdo->query("SELECT * FROM category ORDER BY name ASC")->fetchAll(
                 <td>
                     <a href="edit.php?id=<?php echo $item['id']; ?>" class="btn-edit">Edit</a>
                     <form class="form-hapus" method="post" action="hapus.php">
+                        <?php echo csrf_field(); ?>
                         <input type="hidden" name="id" value="<?php echo $item['id']; ?>">
                         <button type="submit" class="btn-delete btn-hapus">Hapus</button>
                     </form>

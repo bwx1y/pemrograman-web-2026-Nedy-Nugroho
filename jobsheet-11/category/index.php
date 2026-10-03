@@ -60,6 +60,7 @@ if ($keyword !== '') {
                 <td>
                     <a href="/category/edit.php?id=<?php echo $cat['id'] ?>" class="btn-edit">Edit</a>
                     <form class="form-hapus" method="post" action="/category/hapus.php">
+                        <?php echo csrf_field(); ?>
                         <input type="hidden" name="id" value="<?php echo $cat['id']; ?>">
                         <button type="submit" class="btn-delete btn-hapus">Hapus</button>
                     </form>
