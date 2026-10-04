@@ -644,6 +644,11 @@ $base = $__rel === '' ? '' : str_repeat('../', substr_count($__rel, '/') + 1);
         <ul>
             <li><a href="/index.php">Home</a></li>
             <li><a href="/item/index.php">List of Items</a></li>
+            <?php if (isset($_SESSION['user_id'])): ?>
+                <li><a href="/peminjaman/tambah.php">Peminjaman Baru</a></li>
+                <li><a href="/peminjaman/kembali.php">Pengembalian</a></li>
+                <li><a href="/peminjaman/riwayat.php">Riwayat</a></li>
+            <?php endif; ?>
             <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'Admin'): ?>
                 <li><a href="/category/index.php">Categories</a></li>
                 <li><a href="/user/index.php">Members</a></li>
